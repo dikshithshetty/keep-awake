@@ -101,11 +101,18 @@ window.addEventListener("DOMContentLoaded", () => {
 
   favicon = document.getElementById("web-icon");
 
-  const switchElement: HTMLElement | null =
-    document.getElementById("keep-awake-switch");
+  const switchElement: HTMLInputElement | null = document.getElementById(
+    "keep-awake-switch"
+  ) as HTMLInputElement | null;
 
   if (switchElement) {
     nosleep.enable();
     switchElement.addEventListener("change", changeSwitch);
+
+    setInterval(() => {
+      if (!nosleep.enabled && switchElement.checked) {
+        nosleep.enable();
+      }
+    }, 1000);
   }
 });

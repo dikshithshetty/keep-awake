@@ -85,5 +85,10 @@ window.addEventListener("DOMContentLoaded", function () {
     if (switchElement) {
         nosleep.enable();
         switchElement.addEventListener("change", changeSwitch);
+        setInterval(function () {
+            if (!nosleep.enabled && switchElement.checked) {
+                nosleep.enable();
+            }
+        }, 1000);
     }
 });
